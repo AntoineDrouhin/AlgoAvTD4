@@ -5,7 +5,6 @@
  */
 package algoavtd4;
 
-
 /**
  *
  * @author aureliengarret
@@ -24,33 +23,38 @@ public class HashChainee<V> extends HashDico<V> {
     @Override
     public V ajouter(String cle, V valeur) {
         int h = Math.abs(HashDico.hashString(cle));
-        int i = h%tab.length;
-       
+        int i = h % tab.length;
+
         if (tab[i] == null) {
-            Noeud n = new Noeud(valeur);            
-        }            
-        else {
+            Noeud n = new Noeud(valeur);
+        } else {
             Noeud n = tab[i];
-            while (n.suiv != null) {                
+            while (n.suiv != null) {
             }
             n.suiv = new Noeud(valeur);
-        } 
-            
+        }
+
         return valeur;
     }
 
     @Override
-    public V rechercher(String cle) {        
+    public V rechercher(String cle) {
         int hash = HashDico.hashString(cle);
-        if(tab[hash].suiv==null && cle){
-            return tab[hash].elem;
+        hash = hash%tab.length;
+        return rechercherWrapperRecur(tab[hash], cle).elem;
+    }
+
+    private Noeud rechercherWrapperRecur(Noeud n, String cle) {
+        if (n == null) {
+            return null;
         }
-        else{
-            tab[hash].suiv
+        if (cle.equals(n.cle)) {
+            return n;
+        } else if (cle.compareTo(n.cle) < 0) {
+            return null;
         }
-        
-        
-        return null;
+        return rechercherWrapperRecur(n.suiv, cle);
+
     }
 
     @Override
@@ -100,8 +104,7 @@ public class HashChainee<V> extends HashDico<V> {
     private class Noeud {
 
         public String cle;
-        
-        
+
         /**
          * L'élement
          */
@@ -118,8 +121,7 @@ public class HashChainee<V> extends HashDico<V> {
          * @param elem
          * @param suiv
          */
-
-        public Noeud(String cle,V elem) {
+        public Noeud(String cle, V elem) {
             this.elem = elem;
 
         }
