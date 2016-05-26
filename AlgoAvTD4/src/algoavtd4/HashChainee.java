@@ -14,12 +14,25 @@ public class HashChainee<V> extends HashDico<V> {
     protected Noeud[] tab;
 
     public HashChainee(int tailleInit) {
-        this.tab = (E[]) new Object[tailleInit];
+        this.tab = (Noeud[]) new Object[tailleInit];
     }
 
     @Override
     public V ajouter(String cle, V valeur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int h = Math.abs(HashDico.hashString(cle));
+        int i = h%tab.length;
+       
+        if (tab[i] == null) {
+            Noeud n = new Noeud(valeur);            
+        }            
+        else {
+            Noeud n = tab[i];
+            while (n.suiv != null) {                
+            }
+            n.suiv = new Noeud(valeur);
+        } 
+            
+        return valeur;
     }
 
     @Override
@@ -76,7 +89,7 @@ public class HashChainee<V> extends HashDico<V> {
         /**
          * L'élement
          */
-        public E elem;
+        public V elem;
 
         /**
          * Le noeud suivant
@@ -89,9 +102,8 @@ public class HashChainee<V> extends HashDico<V> {
          * @param elem
          * @param suiv
          */
-        public Noeud(E elem, Noeud suiv) {
+        public Noeud(V elem) {
             this.elem = elem;
-            this.suiv = suiv;
         }
     }
 
