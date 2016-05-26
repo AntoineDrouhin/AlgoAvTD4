@@ -5,16 +5,20 @@
  */
 package algoavtd4;
 
+
 /**
  *
  * @author aureliengarret
  */
 public class HashChainee<V> extends HashDico<V> {
+    /////////////////////////////////////////////////////////////////////////////////
+    // AJOUTER LE REDIMENSIONNAGE ET LES CONTROLE QUI VONT AVEC MA GUELLE
+    ////////////////////////////////////////////////////////////////////////////
 
     protected Noeud[] tab;
 
     public HashChainee(int tailleInit) {
-        this.tab = (E[]) new Object[tailleInit];
+        this.tab = (Noeud[]) new Object[tailleInit];
     }
 
     @Override
@@ -23,8 +27,17 @@ public class HashChainee<V> extends HashDico<V> {
     }
 
     @Override
-    public V rechercher(String cle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public V rechercher(String cle) {        
+        int hash = HashDico.hashString(cle);
+        if(tab[hash].suiv==null && cle){
+            return tab[hash].elem;
+        }
+        else{
+            tab[hash].suiv
+        }
+        
+        
+        return null;
     }
 
     @Override
@@ -73,10 +86,13 @@ public class HashChainee<V> extends HashDico<V> {
      */
     private class Noeud {
 
+        public String cle;
+        
+        
         /**
          * L'élement
          */
-        public E elem;
+        public V elem;
 
         /**
          * Le noeud suivant
@@ -89,9 +105,9 @@ public class HashChainee<V> extends HashDico<V> {
          * @param elem
          * @param suiv
          */
-        public Noeud(E elem, Noeud suiv) {
+        public Noeud(String cle,V elem) {
             this.elem = elem;
-            this.suiv = suiv;
+            
         }
     }
 
