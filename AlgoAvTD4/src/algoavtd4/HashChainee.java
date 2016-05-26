@@ -11,6 +11,12 @@ package algoavtd4;
  */
 public class HashChainee<V> extends HashDico<V> {
 
+    protected Noeud[] tab;
+
+    public HashChainee(int tailleInit) {
+        this.tab = (E[]) new Object[tailleInit];
+    }
+
     @Override
     public V ajouter(String cle, V valeur) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -60,5 +66,33 @@ public class HashChainee<V> extends HashDico<V> {
     public String toSTring() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    /**
+     * Encapsule les propriétés d'un noeud necessaire à la liste constituant la
+     * file
+     */
+    private class Noeud {
+
+        /**
+         * L'élement
+         */
+        public E elem;
+
+        /**
+         * Le noeud suivant
+         */
+        public Noeud suiv;
+
+        /**
+         * Constructeur
+         *
+         * @param elem
+         * @param suiv
+         */
+        public Noeud(E elem, Noeud suiv) {
+            this.elem = elem;
+            this.suiv = suiv;
+        }
+    }
+
 }
