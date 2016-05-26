@@ -9,7 +9,7 @@ package algoavtd4;
  *
  * @author aureliengarret
  */
-public class LinkedHashMap<V> implements Dico<String,V> {
+public class LinkedHashMap<V> extends HashMap<V> {
 
     @Override
     public V ajouter(String cle, V valeur) {

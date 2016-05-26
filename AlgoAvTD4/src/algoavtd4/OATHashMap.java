@@ -9,7 +9,7 @@ package algoavtd4;
  *
  * @author aureliengarret
  */
-public class OATHashMap<V> implements Dico<String,V> {
+public class OATHashMap<V> extends HashMap<V>{
 
     @Override
     public V ajouter(String cle, V valeur) {
