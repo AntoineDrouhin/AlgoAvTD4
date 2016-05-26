@@ -55,27 +55,16 @@ public interface Dico<K, V> {
      */
     public boolean estVide();
 
-    /*il est possible de rajouter des méthodes pour la partie test : hauteur équilibrer etc ...
-     * dans la suite du tp c'est necessaire
-     * remarque(antoine) : ces méthodes n'ont à mon avis pas leur place dans l'interface
-     *notes: un arbre équilibré est un arbre dons la hauteur des sous arbre varie au plus de 1
-     * et dont les sous arbres sont déséquilibrés.
-     */
-    /*
-     *Retourne la hauteur de l'arbre
-     *
-     */
-    public int hauteur();
 
     /*
      * Indique si larbre est équilibré ou non
      */
-    public boolean estEquilibre();
+    public boolean estOrganise();
 
     /*
      * Equilibre l'arbre
      */
-    public void equilibrer();
+    public void organiser();
     
     public String toSTring();
 }
