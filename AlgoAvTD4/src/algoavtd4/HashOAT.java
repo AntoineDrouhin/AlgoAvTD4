@@ -9,11 +9,24 @@ package algoavtd4;
  *
  * @author aureliengarret
  */
-public class OATHashMap<V> extends HashDico<V>{
 
+public class HashOAT<V> extends HashDico<V>{
+    
+    private Element[] tab;
+    
+    public HashOAT(int tailleInit) {
+        this.tab = (Element[]) new Object[tailleInit];
+    }
+    
+    public HashOAT() {
+        this(32);
+    }
+    
     @Override
     public V ajouter(String cle, V valeur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int hash = hashString(cle);
+        
     }
 
     @Override
@@ -60,5 +73,16 @@ public class OATHashMap<V> extends HashDico<V>{
     public String toSTring() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    private class Element{
+        String cle;
+        V valeur;
+        boolean libre;
+        
+        Element(String cle, V valeur){
+            this.cle = cle;
+            this.valeur = valeur;
+            libre = false;
+        }
+    }
 }
