@@ -11,6 +11,7 @@ package algoavtd4;
  */
 public abstract class HashDico<V>  implements Dico<String, V> {
     
+    protected int nbElem;
     static int hashString(String s) {
         
         int h = 0;
@@ -21,4 +22,5 @@ public abstract class HashDico<V>  implements Dico<String, V> {
         
         return h;
     }
+   
 }

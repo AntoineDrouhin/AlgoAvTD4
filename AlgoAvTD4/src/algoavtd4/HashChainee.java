@@ -18,6 +18,7 @@ public class HashChainee<V> extends HashDico<V> {
 
     public HashChainee(int tailleInit) {
         this.tab = (Noeud[]) new Object[tailleInit];
+        this.nbElem = 0;
     }
 
     @Override
@@ -25,14 +26,34 @@ public class HashChainee<V> extends HashDico<V> {
         int h = Math.abs(HashDico.hashString(cle));
         int i = h % tab.length;
 
-        if (tab[i] == null) {
-            Noeud n = new Noeud(valeur);
-        } else {
-            Noeud n = tab[i];
-            while (n.suiv != null) {
-            }
-            n.suiv = new Noeud(valeur);
+        Noeud cour = tab[i], prec = null;
+        int cmp = -1;
+        while (cour != null && (cmp = cle.compareTo(cour.cle)) > 0) {
+            prec = cour;
+            cour = cour.suiv;
         }
+        
+        // test existe deja 
+        if (cmp == 0) {
+            V ancienneValeur = cour.elem;
+            cour.cle = cle;
+            cour.elem = valeur;
+            return ancienneValeur;
+        }
+        
+        ++nbElem;
+        
+        Noeud nouv = new Noeud(cle, valeur, cour);
+        if (prec == null)
+            tab[i] = nouv;
+        else
+            prec.suiv = nouv;
+
+        // didou a dit c'est l'utilisateur qui le fait le organiser
+        //if (estOrganise()) {
+        //    organiser();
+        //}
+
 
         return valeur;
     }
@@ -121,9 +142,10 @@ public class HashChainee<V> extends HashDico<V> {
          * @param elem
          * @param suiv
          */
-        public Noeud(String cle, V elem) {
+        public Noeud(String cle, V elem, Noeud suiv) {
+            this.cle = cle;
             this.elem = elem;
-
+            this.suiv = suiv;
         }
     }
 
