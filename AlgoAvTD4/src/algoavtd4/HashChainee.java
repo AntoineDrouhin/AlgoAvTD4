@@ -122,6 +122,7 @@ public class HashChainee<V> extends HashDico<V> {
     public void vider() {
         // note aurélien : a tester cetter version !!
         Arrays.fill(tab, null);
+        nbElem = 0;
     }
 
     @Override
@@ -131,7 +132,7 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public boolean estOrganise() {
-        
+        return (nbElem / tab.length) <= 0.75;
     }
 
     @Override
