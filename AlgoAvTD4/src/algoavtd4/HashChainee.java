@@ -23,8 +23,8 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public V ajouter(String cle, V valeur) {
-        int h = Math.abs(HashDico.hashString(cle));
-        int i = h % tab.length;
+        
+        int i = this.getHash(cle);
 
         Noeud cour = tab[i], prec = null;
         int cmp = -1;
@@ -32,7 +32,6 @@ public class HashChainee<V> extends HashDico<V> {
             prec = cour;
             cour = cour.suiv;
         }
-        
         // test existe deja 
         if (cmp == 0) {
             V ancienneValeur = cour.elem;
@@ -40,29 +39,28 @@ public class HashChainee<V> extends HashDico<V> {
             cour.elem = valeur;
             return ancienneValeur;
         }
-        
         ++nbElem;
-        
         Noeud nouv = new Noeud(cle, valeur, cour);
-        if (prec == null)
+        if (prec == null) {
             tab[i] = nouv;
-        else
+        } else {
             prec.suiv = nouv;
+        }
 
         // didou a dit c'est l'utilisateur qui le fait le organiser
         //if (estOrganise()) {
         //    organiser();
         //}
-
-
         return valeur;
     }
 
     @Override
     public V rechercher(String cle) {
-        int hash = HashDico.hashString(cle);
-        hash = hash%tab.length;
+        int hash = this.getHash(cle);
+  
         return rechercherWrapperRecur(tab[hash], cle).elem;
+        
+        
     }
 
     private Noeud rechercherWrapperRecur(Noeud n, String cle) {
@@ -116,6 +114,10 @@ public class HashChainee<V> extends HashDico<V> {
     @Override
     public String toSTring() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    protected int getHash(String cle) {        
+        return HashDico.hashString(cle) % tab.length;
     }
 
     /**
