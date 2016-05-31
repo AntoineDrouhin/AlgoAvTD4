@@ -83,7 +83,32 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public V supprimer(String cle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        V valeur = null;
+        
+        int i = this.getHash(cle);
+        
+        Noeud cour = tab[i];
+        Noeud prec = null;
+        
+        int cmp = -1;
+        while (cour != null && (cmp = cle.compareTo(cour.cle)) > 0) {
+            prec = cour;
+            cour = cour.suiv;
+        }
+        
+        // valeur trouvée
+        if (cmp == 0) {
+            valeur = cour.elem;             
+            if (prec == null) {
+                tab[i] = cour.suiv;
+            } else {
+                prec.suiv = cour.suiv;
+            }            
+            --nbElem;            
+        }
+        
+        return valeur;
     }
 
     @Override
