@@ -12,10 +12,12 @@ package algoavtd4;
 public class HashOAT<V> extends HashDico<V> {
 
     private Element[] tab;
-
+    private int nbElemInit;
+    
     public HashOAT(int tailleInit) {
         this.tab = (Element[]) new Object[tailleInit];
         nbElem = 0;
+        nbElemInit = tailleInit;
     }
 
     public HashOAT() {
@@ -51,7 +53,7 @@ public class HashOAT<V> extends HashDico<V> {
             }
         }
         
-        compteurTaille++;
+        nbElem++;
         
         if(!estOrganise())
             organiser();
@@ -62,32 +64,63 @@ public class HashOAT<V> extends HashDico<V> {
 
     @Override
     public V rechercher(String cle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int i = Math.abs(hashString(cle))%tab.length;
+        
+        
+        while(tab[i++%tab.length] != null) {
+            if(tab[i].cle.equals(cle)){
+                if(tab[i].libre == true){
+                    break;
+                }
+                return tab[i].valeur;
+            }
+        }
+        
+        return null;        
     }
 
     @Override
     public boolean exist(String cle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return this.rechercher(cle) != null;
+        
     }
 
     @Override
     public V supprimer(String cle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int i = Math.abs(hashString(cle))%tab.length;
+        
+        while(tab[i++%tab.length] != null) {
+            if(tab[i].cle.equals(cle)){
+                if(tab[i].libre == true){
+                    break;
+                }
+                tab[i].libre = true;
+                nbElem--;
+                return tab[i].valeur;
+            }
+        }
+        
+        return null;
+        
     }
 
     @Override
     public int nbElem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nbElem;
     }
 
     @Override
     public void vider() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.tab = (Element[]) new Object[nbElemInit];
+        nbElem = 0;
     }
 
     @Override
     public boolean estVide() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nbElem == 0;
     }
 
     @Override
@@ -97,12 +130,31 @@ public class HashOAT<V> extends HashDico<V> {
 
     @Override
     public void organiser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Element[] oldTab = tab;
+        this.tab = (Element[]) new Object[tab.length * 2];
+        
+        for (Element oldElem : oldTab) {
+            if (oldElem != null && oldElem.libre == false) {
+                ajouter(oldElem.cle, oldElem.valeur);
+            }
+        }
     }
 
     @Override
     public String toSTring() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0 ; i < tab.length; i++){
+            if (tab[i] != null && tab[i].libre == false) {
+                sb.append("[ ");
+                sb.append(i);
+                sb.append(" ; ");
+                sb.append(tab[i].cle);
+                sb.append(" ; ");
+                sb.append(tab[i].valeur);
+                sb.append(" ]\n");
+            }
+        }
+        return sb.toString();
     }
 
     private class Element {
