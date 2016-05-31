@@ -5,6 +5,8 @@
  */
 package algoavtd4;
 
+import java.util.Arrays;
+
 /**
  *
  * @author aureliengarret
@@ -118,7 +120,8 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public void vider() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // note aurélien : a tester cetter version !!
+        Arrays.fill(tab, null);
     }
 
     @Override
