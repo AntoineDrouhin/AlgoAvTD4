@@ -126,7 +126,7 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public boolean estVide() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nbElem == 0;
     }
 
     @Override
