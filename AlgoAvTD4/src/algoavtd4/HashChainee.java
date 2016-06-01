@@ -140,7 +140,13 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public void organiser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!this.estOrganise()){
+            Noeud[] newTab = (Noeud[]) new Object[tab.length*2];
+            for(int i=0; i<tab.length;i++){
+                newTab[HashDico.getHashedIndex(tab[i].cle, newTab.length)] = tab[i];
+            }
+            tab = newTab;
+        }
     }
 
     @Override
