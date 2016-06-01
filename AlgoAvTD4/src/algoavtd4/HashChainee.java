@@ -140,12 +140,16 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public void organiser() {
-        if(!this.estOrganise()){
-            Noeud[] newTab = (Noeud[]) new Object[tab.length*2];
-            for(int i=0; i<tab.length;i++){
-                newTab[HashDico.getHashedIndex(tab[i].cle, newTab.length)] = tab[i];
-            }
-            tab = newTab;
+        if (!this.estOrganise()) {            
+            Noeud[] oldTab = tab;
+            Noeud[] tab = (Noeud[]) new Object[oldTab.length * 2];
+            for (int i = 0; i < oldTab.length; i++) {
+                Noeud n = oldTab[i];
+                while (n != null) {
+                   this.ajouter(n.cle, n.elem);
+                   n = n.suiv; 
+                }                
+            }            
         }
     }
 
