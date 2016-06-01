@@ -25,7 +25,7 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public V ajouter(String cle, V valeur) {
-        
+
         int i = HashDico.getHashedIndex(cle, tab.length);
 
         Noeud cour = tab[i], prec = null;
@@ -59,57 +59,60 @@ public class HashChainee<V> extends HashDico<V> {
     @Override
     public V rechercher(String cle) {
         int hash = HashDico.getHashedIndex(cle, tab.length);
-  
-        return rechercherWrapperRecur(tab[hash], cle).elem;
-        
-        
-    }
-
-    private Noeud rechercherWrapperRecur(Noeud n, String cle) {
-        if (n == null) {
-            return null;
+        Noeud n = tab[hash];
+        while (n != null) {
+            if (cle.equals(n.cle)) {
+                return n.elem;
+            } else if (cle.compareTo(n.cle) < 0) {
+                return null;
+            }
+            n = n.suiv;
         }
-        if (cle.equals(n.cle)) {
-            return n;
-        } else if (cle.compareTo(n.cle) < 0) {
-            return null;
-        }
-        return rechercherWrapperRecur(n.suiv, cle);
-
+        return null;
     }
 
     @Override
     public boolean exist(String cle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int hash = HashDico.getHashedIndex(cle, tab.length);
+        Noeud n = tab[hash];
+        while (n != null) {
+            if (cle.equals(n.cle)) {
+                return true;
+            } else if (cle.compareTo(n.cle) < 0) {
+                return false;
+            }
+            n = n.suiv;
+        }
+        return false;
     }
 
     @Override
     public V supprimer(String cle) {
-        
+
         V valeur = null;
-        
+
         int i = HashDico.getHashedIndex(cle, tab.length);
-        
+
         Noeud cour = tab[i];
         Noeud prec = null;
-        
+
         int cmp = -1;
         while (cour != null && (cmp = cle.compareTo(cour.cle)) > 0) {
             prec = cour;
             cour = cour.suiv;
         }
-        
+
         // valeur trouvée
         if (cmp == 0) {
-            valeur = cour.elem;             
+            valeur = cour.elem;
             if (prec == null) {
                 tab[i] = cour.suiv;
             } else {
                 prec.suiv = cour.suiv;
-            }            
-            --nbElem;            
+            }
+            --nbElem;
         }
-        
+
         return valeur;
     }
 
@@ -144,8 +147,6 @@ public class HashChainee<V> extends HashDico<V> {
     public String toSTring() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 
     /**
      * Encapsule les propriétés d'un noeud necessaire à la liste constituant la
