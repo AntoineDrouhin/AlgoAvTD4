@@ -26,7 +26,7 @@ public class HashChainee<V> extends HashDico<V> {
     @Override
     public V ajouter(String cle, V valeur) {
         
-        int i = this.getHash(cle);
+        int i = HashDico.getHashedIndex(cle, tab.length);
 
         Noeud cour = tab[i], prec = null;
         int cmp = -1;
@@ -58,7 +58,7 @@ public class HashChainee<V> extends HashDico<V> {
 
     @Override
     public V rechercher(String cle) {
-        int hash = this.getHash(cle);
+        int hash = HashDico.getHashedIndex(cle, tab.length);
   
         return rechercherWrapperRecur(tab[hash], cle).elem;
         
@@ -88,7 +88,7 @@ public class HashChainee<V> extends HashDico<V> {
         
         V valeur = null;
         
-        int i = this.getHash(cle);
+        int i = HashDico.getHashedIndex(cle, tab.length);
         
         Noeud cour = tab[i];
         Noeud prec = null;
@@ -145,9 +145,7 @@ public class HashChainee<V> extends HashDico<V> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    protected int getHash(String cle) {        
-        return HashDico.hashString(cle) % tab.length;
-    }
+
 
     /**
      * Encapsule les propriétés d'un noeud necessaire à la liste constituant la

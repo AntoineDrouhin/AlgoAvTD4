@@ -20,7 +20,11 @@ public abstract class HashDico<V>  implements Dico<String, V> {
             h = 97 * h + s.charAt(i) - ' ';
         }
         
-        return h;
+        return Math.abs(h);
+    }
+    
+    static int getHashedIndex(String cle, int index) {        
+        return hashString(cle) % index;
     }
    
 }
