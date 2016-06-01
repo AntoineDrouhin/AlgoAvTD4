@@ -125,7 +125,7 @@ public class HashOAT<V> extends HashDico<V> {
 
     @Override
     public boolean estOrganise() {
-        return nbElem > 0.75 * tab.length;
+        return nbElem < (0.75 * tab.length);
     }
 
     @Override
