@@ -5,6 +5,7 @@
  */
 package algoavtd4;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -18,7 +19,7 @@ public class HashChainee<V> extends HashDico<V> {
     protected Noeud[] tab;
 
     public HashChainee(int tailleInit) {        
-        this.tab = (Noeud[]) new Object[tailleInit];
+        this.tab = (Noeud[]) Array.newInstance(Noeud.class, tailleInit);
         this.nbElem = 0;
     }
 

@@ -5,6 +5,8 @@
  */
 package algoavtd4;
 
+import java.lang.reflect.Array;
+
 /**
  *
  * @author aureliengarret
@@ -15,7 +17,7 @@ public class HashOAT<V> extends HashDico<V> {
     private int nbElemInit;
     
     public HashOAT(int tailleInit) {
-        this.tab = (Element[]) new Object[tailleInit];
+        this.tab = (Element[]) Array.newInstance(Element.class, tailleInit);
         nbElem = 0;
         nbElemInit = tailleInit;
     }
