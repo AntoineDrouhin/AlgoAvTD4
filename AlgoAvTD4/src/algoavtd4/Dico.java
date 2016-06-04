@@ -8,7 +8,7 @@ package algoavtd4;
 /**
  *
  * @author Antoine
- * @param <K> Type de la clé
+ * @param <K> Type de la clé 
  * @param <V> Type de la valeur
  */
 public interface Dico<K, V> {

@@ -10,15 +10,14 @@ import java.util.Arrays;
 /**
  *
  * @author aureliengarret
+ * @param <V>
  */
 public class HashChainee<V> extends HashDico<V> {
-    /////////////////////////////////////////////////////////////////////////////////
-    // AJOUTER LE REDIMENSIONNAGE ET LES CONTROLE QUI VONT AVEC MA GUELLE
-    ////////////////////////////////////////////////////////////////////////////
+
 
     protected Noeud[] tab;
 
-    public HashChainee(int tailleInit) {
+    public HashChainee(int tailleInit) {        
         this.tab = (Noeud[]) new Object[tailleInit];
         this.nbElem = 0;
     }
@@ -143,12 +142,11 @@ public class HashChainee<V> extends HashDico<V> {
         if (!this.estOrganise()) {            
             Noeud[] oldTab = tab;
             Noeud[] tab = (Noeud[]) new Object[oldTab.length * 2];
-            for (int i = 0; i < oldTab.length; i++) {
-                Noeud n = oldTab[i];
+            for (Noeud n : oldTab) {
                 while (n != null) {
-                   this.ajouter(n.cle, n.elem);
-                   n = n.suiv; 
-                }                
+                    this.ajouter(n.cle, n.elem);
+                    n = n.suiv;
+                }
             }            
         }
     }

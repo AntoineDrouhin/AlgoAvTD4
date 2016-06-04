@@ -8,6 +8,7 @@ package algoavtd4;
 /**
  *
  * @author aureliengarret
+ * @param <V>
  */
 public abstract class HashDico<V>  implements Dico<String, V> {
     

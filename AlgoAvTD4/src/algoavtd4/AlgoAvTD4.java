@@ -16,6 +16,10 @@ public class AlgoAvTD4 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        HashDico<Integer> monDicoOAT = new HashOAT<>(10);
+        HashDico<Integer> monDico = new HashChainee<>(10);
+        monDico.ajouter("A", 1);
+        
     }
     
 }
