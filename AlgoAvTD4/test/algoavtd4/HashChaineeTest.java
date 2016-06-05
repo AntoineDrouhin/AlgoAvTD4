@@ -201,12 +201,28 @@ public class HashChaineeTest {
     @Test
     public void testEstVide() {
         System.out.println("estVide");
-        HashChainee instance = null;
-        boolean expResult = false;
-        boolean result = instance.estVide();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        HashDico<String> monDico = new HashChainee<>(512);
+        
+        assertTrue(monDico.estVide());
+        
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + " - " + String.valueOf(c2);
+            monDico.ajouter(String.valueOf(c1) + String.valueOf(c2), s);
+            c1++;
+            c2--;
+        }
+        
+        assertFalse(monDico.estVide());
+        
+        monDico.vider();
+        
+        assertTrue(monDico.estVide());
     }
 
     /**
