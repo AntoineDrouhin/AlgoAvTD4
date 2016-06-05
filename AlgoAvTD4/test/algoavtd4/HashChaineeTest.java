@@ -17,22 +17,22 @@ import static org.junit.Assert.*;
  * @author Geoffrey
  */
 public class HashChaineeTest {
-    
+
     public HashChaineeTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -67,14 +67,29 @@ public class HashChaineeTest {
      */
     @Test
     public void testRechercher() {
-        System.out.println("rechercher");
-        String cle = "";
-        HashChainee instance = null;
-        Object expResult = null;
-        Object result = instance.rechercher(cle);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("rechercher");        
+        HashDico<String> monDico = new HashChainee<>(512);
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        String tabString[] = new String[93];
+        for (int i = 0; i < fin; i++) {
+            s= String.valueOf(c1) + String.valueOf(c2);
+//            System.out.print(String.valueOf(c1) + " - ");
+ //           System.out.print(String.valueOf(c2) + " - ");
+ //           System.out.println(HashDico.getHashedIndex(String.valueOf(c1) + String.valueOf(c2), 512));
+            tabString[i]= s;
+            monDico.ajouter(s, s);
+            c1++;
+            c2--;
+        }
+        for (int i = 0; i < tabString.length; i++) {
+            assertEquals(tabString[i], monDico.rechercher(tabString[i]));
+        }
+        
+        
     }
 
     /**
@@ -195,5 +210,5 @@ public class HashChaineeTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
