@@ -287,13 +287,13 @@ public class HashChaineeTest {
             c1++;
             c2--;
         }
+        
         int i = 0;
-        //while (!monDico.estOrganise()) {
-         //   i++;
-           // monDico.organiser();
-            
-        //}
-        System.out.println("nombre de bouble : " + i);
+        while (!monDico.estOrganise() && i++ < 7) {
+           assertFalse(monDico.estOrganise());
+           monDico.organiser();            
+        }                        
+        assertTrue(monDico.estOrganise());
     }
 
 }
