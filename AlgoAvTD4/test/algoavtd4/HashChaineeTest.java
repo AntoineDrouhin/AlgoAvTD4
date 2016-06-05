@@ -43,14 +43,23 @@ public class HashChaineeTest {
     @Test
     public void testAjouter() {
         System.out.println("ajouter");
-        String cle = "";
-        Object valeur = null;
-        HashChainee instance = null;
-        Object expResult = null;
-        Object result = instance.ajouter(cle, valeur);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        HashDico<String> monDico = new HashChainee<>(512);
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + " - " + String.valueOf(c2);
+            monDico.ajouter(String.valueOf(c1) + String.valueOf(c2), s);
+            c1++;
+            c2--;
+        }
+        
+        assertEquals(monDico.rechercher("RM"), "R - M");
+        assertEquals(monDico.rechercher("RRRR"), null);
+        
     }
 
     /**
