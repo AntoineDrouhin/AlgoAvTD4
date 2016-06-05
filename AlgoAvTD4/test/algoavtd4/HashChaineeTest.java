@@ -122,13 +122,23 @@ public class HashChaineeTest {
     @Test
     public void testSupprimer() {
         System.out.println("supprimer");
-        String cle = "";
-        HashChainee instance = null;
-        Object expResult = null;
-        Object result = instance.supprimer(cle);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        HashDico<String> monDico = new HashChainee<>(512);
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + " - " + String.valueOf(c2);
+            monDico.ajouter(String.valueOf(c1) + String.valueOf(c2), s);
+            c1++;
+            c2--;
+        }
+        
+        assertTrue(monDico.exist("RM"));        
+        monDico.supprimer("RM");
+        assertFalse(monDico.exist("RM"));
     }
 
     /**
