@@ -18,7 +18,18 @@ public class AlgoAvTD4 {
         // TODO code application logic here
         HashDico<Integer> monDicoOAT = new HashOAT<>(10);
         HashDico<Integer> monDico = new HashChainee<>(10);
-        monDico.ajouter("A", 1);
+        
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        for (int i = 0; i < fin; i++) { 
+            System.out.print(String.valueOf(c1)+" - ");
+            System.out.print(String.valueOf(c2)+" - ");
+            System.out.println(HashDico.getHashedIndex(String.valueOf(c1)+String.valueOf(c2), 512));
+            c1++;
+            c2--;
+        }
         
     }
     
