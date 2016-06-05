@@ -29,7 +29,7 @@ public class HashOAT<V> extends HashDico<V> {
     @Override
     public V ajouter(String cle, V valeur) {
 
-        int i = Math.abs(hashString(cle))%tab.length;
+        int i = HashDico.getHashedIndex(cle, tab.length);
         V retour = null;
         
         if (tab[i] == null) {
@@ -67,7 +67,7 @@ public class HashOAT<V> extends HashDico<V> {
     @Override
     public V rechercher(String cle) {
         
-        int i = Math.abs(hashString(cle))%tab.length;
+        int i = HashDico.getHashedIndex(cle, tab.length);
         
         
         while(tab[i++%tab.length] != null) {
@@ -92,7 +92,7 @@ public class HashOAT<V> extends HashDico<V> {
     @Override
     public V supprimer(String cle) {
         
-        int i = Math.abs(hashString(cle))%tab.length;
+        int i = HashDico.getHashedIndex(cle, tab.length);
         
         while(tab[i++%tab.length] != null) {
             if(tab[i].cle.equals(cle)){
