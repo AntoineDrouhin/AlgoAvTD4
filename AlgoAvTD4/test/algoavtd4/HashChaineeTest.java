@@ -60,6 +60,10 @@ public class HashChaineeTest {
         assertEquals(monDico.rechercher("RM"), "R - M");
         assertEquals(monDico.rechercher("RRRR"), null);
         
+        assertEquals(monDico.ajouter("RM", "toto"), "R - M");
+        assertEquals(monDico.rechercher("RM"), "toto");
+        
+        
     }
 
     /**
