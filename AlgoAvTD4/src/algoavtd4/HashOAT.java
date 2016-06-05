@@ -36,12 +36,13 @@ public class HashOAT<V> extends HashDico<V> {
             tab[i] = new Element(cle, valeur);
             nbElem++;
         }
-        else {            
-            while (true) {
+        else {
+            int l =  0;
+            while (l < tab.length) {
                 i = (i+1)%tab.length;
                 if (tab[i] == null) {
                     tab[i] = new Element(cle, valeur);
-                     nbElem++;
+                    nbElem++;
                     break;
                 }
                 if (tab[i].libre) {
@@ -56,11 +57,13 @@ public class HashOAT<V> extends HashDico<V> {
                     tab[i].valeur = valeur;
                     break;
                 }
+                l++;
             }
         }               
         
-        if(!estOrganise())
-            organiser();
+        // Daniel Diaz préfère que l'utilisateur reoorganise lui même le tableau
+        //if(!estOrganise())
+        //    organiser();
         
         return retour;
         
@@ -130,7 +133,7 @@ public class HashOAT<V> extends HashDico<V> {
 
     @Override
     public boolean estOrganise() {
-        return nbElem < (0.75 * tab.length);
+        return (nbElem / tab.length) <= 0.75;
     }
 
     @Override
