@@ -34,17 +34,21 @@ public class HashOAT<V> extends HashDico<V> {
         
         if (tab[i] == null) {
             tab[i] = new Element(cle, valeur);
+            nbElem++;
         }
-        else {
+        else {            
             while (true) {
-                if (tab[++i%tab.length] == null) {
+                i = (i+1)%tab.length;
+                if (tab[i] == null) {
                     tab[i] = new Element(cle, valeur);
+                     nbElem++;
                     break;
                 }
                 if (tab[i].libre) {
                     tab[i].cle = cle;
                     tab[i].valeur = valeur;
                     tab[i].libre = false;
+                     nbElem++;
                     break;
                 }
                 if (tab[i].cle.equals(cle)){
@@ -53,9 +57,7 @@ public class HashOAT<V> extends HashDico<V> {
                     break;
                 }
             }
-        }
-        
-        nbElem++;
+        }               
         
         if(!estOrganise())
             organiser();
@@ -70,13 +72,14 @@ public class HashOAT<V> extends HashDico<V> {
         int i = HashDico.getHashedIndex(cle, tab.length);
         
         
-        while(tab[i++%tab.length] != null) {
-            if(tab[i].cle.equals(cle)){
-                if(tab[i].libre == true){
+        while(tab[i%tab.length] != null) {
+            if(tab[i%tab.length].cle.equals(cle)){
+                if(tab[i%tab.length].libre == true){
                     break;
                 }
-                return tab[i].valeur;
+                return tab[i%tab.length].valeur;
             }
+            i++;
         }
         
         return null;        
@@ -116,7 +119,7 @@ public class HashOAT<V> extends HashDico<V> {
 
     @Override
     public void vider() {
-        this.tab = (Element[]) new Object[nbElemInit];
+        this.tab = (Element[]) Array.newInstance(Element.class, nbElemInit);
         nbElem = 0;
     }
 
@@ -133,7 +136,7 @@ public class HashOAT<V> extends HashDico<V> {
     @Override
     public void organiser() {
         Element[] oldTab = tab;
-        this.tab = (Element[]) new Object[tab.length * 2];
+        this.tab = (Element[]) Array.newInstance(Element.class, tab.length * 2);
         
         for (Element oldElem : oldTab) {
             if (oldElem != null && oldElem.libre == false) {

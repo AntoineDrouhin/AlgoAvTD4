@@ -254,14 +254,12 @@ public class HashOATTest {
         int fin;
         fin = c2 - c1;
         String s = "";
-        String tabString[] = new String[93];
         assertTrue(monDico.estOrganise());
         for (int i = 0; i < fin; i++) {
             s = String.valueOf(c1) + String.valueOf(c2);
             //System.out.print(String.valueOf(c1) + " - ");
             //           System.out.print(String.valueOf(c2) + " - ");
             //           System.out.println(HashDico.getHashedIndex(String.valueOf(c1) + String.valueOf(c2), 512));
-            tabString[i] = s;
             monDico.ajouter(s, s);
             c1++;
             c2--;
