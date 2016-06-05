@@ -116,10 +116,6 @@ public class HashChainee<V> extends HashDico<V> {
         return valeur;
     }
 
-    @Override
-    public int nbElem() {
-        return nbElem;
-    }
 
     @Override
     public void vider() {
@@ -128,10 +124,6 @@ public class HashChainee<V> extends HashDico<V> {
         nbElem = 0;
     }
 
-    @Override
-    public boolean estVide() {
-        return nbElem == 0;
-    }
 
     @Override
     public boolean estOrganise() {

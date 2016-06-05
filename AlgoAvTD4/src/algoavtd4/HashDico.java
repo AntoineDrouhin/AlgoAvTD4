@@ -10,22 +10,32 @@ package algoavtd4;
  * @author aureliengarret
  * @param <V>
  */
-public abstract class HashDico<V>  implements Dico<String, V> {
-    
+public abstract class HashDico<V> implements Dico<String, V> {
+
     protected int nbElem;
+
     static int hashString(String s) {
-        
+
         int h = 0;
-        
-        for(int i = 0; i < s.length(); ++i) {
+
+        for (int i = 0; i < s.length(); ++i) {
             h = 97 * h + s.charAt(i) - ' ';
         }
-        
+
         return Math.abs(h);
     }
-    
-    static int getHashedIndex(String cle, int index) {        
+
+    static int getHashedIndex(String cle, int index) {
         return hashString(cle) % index;
     }
-   
+
+    @Override
+    public boolean estVide() {
+        return nbElem == 0;
+    }
+
+    @Override
+    public int nbElem() {
+        return nbElem;
+    }
 }

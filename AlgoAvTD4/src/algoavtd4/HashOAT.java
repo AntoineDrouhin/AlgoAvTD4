@@ -116,20 +116,11 @@ public class HashOAT<V> extends HashDico<V> {
     }
 
     @Override
-    public int nbElem() {
-        return nbElem;
-    }
-
-    @Override
     public void vider() {
         this.tab = (Element[]) Array.newInstance(Element.class, nbElemInit);
         nbElem = 0;
     }
 
-    @Override
-    public boolean estVide() {
-        return nbElem == 0;
-    }
 
     @Override
     public boolean estOrganise() {
