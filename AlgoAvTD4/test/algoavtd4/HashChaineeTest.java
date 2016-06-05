@@ -88,6 +88,8 @@ public class HashChaineeTest {
         for (int i = 0; i < tabString.length; i++) {
             assertEquals(tabString[i], monDico.rechercher(tabString[i]));
         }
+        assertEquals(null, monDico.rechercher("RRRRRR"));
+        assertEquals(null, monDico.rechercher("RIib"));
         
         
     }
