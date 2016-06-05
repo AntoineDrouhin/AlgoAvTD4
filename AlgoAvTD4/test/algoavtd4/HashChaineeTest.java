@@ -147,12 +147,34 @@ public class HashChaineeTest {
     @Test
     public void testNbElem() {
         System.out.println("nbElem");
-        HashChainee instance = null;
-        int expResult = 0;
-        int result = instance.nbElem();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        HashDico<String> monDico = new HashChainee<>(512);
+        
+        assertEquals(monDico.nbElem(), 0);
+        
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + " - " + String.valueOf(c2);
+            monDico.ajouter(String.valueOf(c1) + String.valueOf(c2), s);
+            c1++;
+            c2--;
+        }
+        
+        assertEquals(monDico.nbElem(), 93);
+        
+        monDico.ajouter("RM", "R-M");
+        assertEquals(monDico.nbElem(), 93);
+        
+        monDico.supprimer("RM");
+        assertEquals(monDico.nbElem(), 92);
+        
+        monDico.supprimer("RMEE");
+        assertEquals(monDico.nbElem(), 92);
+        
     }
 
     /**
