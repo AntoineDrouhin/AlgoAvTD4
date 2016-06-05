@@ -142,7 +142,7 @@ public class HashChainee<V> extends HashDico<V> {
     public void organiser() {
         if (!this.estOrganise()) {            
             Noeud[] oldTab = tab;
-            Noeud[] tab = (Noeud[]) new Object[oldTab.length * 2];
+            Noeud[] tab = (Noeud[]) Array.newInstance(Noeud.class, oldTab.length*2);
             for (Noeud n : oldTab) {
                 while (n != null) {
                     this.ajouter(n.cle, n.elem);

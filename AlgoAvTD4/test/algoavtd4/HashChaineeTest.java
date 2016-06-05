@@ -188,11 +188,28 @@ public class HashChaineeTest {
      */
     @Test
     public void testVider() {
-        System.out.println("vider");
-        HashChainee instance = null;
-        instance.vider();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        HashDico<String> monDico = new HashChainee<>(512);        
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        String tabString[] = new String[93];
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + String.valueOf(c2);
+            //System.out.print(String.valueOf(c1) + " - ");
+            //           System.out.print(String.valueOf(c2) + " - ");
+            //           System.out.println(HashDico.getHashedIndex(String.valueOf(c1) + String.valueOf(c2), 512));
+            tabString[i] = s;
+            monDico.ajouter(s, s);
+            c1++;
+            c2--;
+        }
+        monDico.vider();
+        for (int i = 0; i < tabString.length; i++) {
+            assertFalse(monDico.exist(tabString[i]));
+        }
+
     }
 
     /**
@@ -231,38 +248,52 @@ public class HashChaineeTest {
     @Test
     public void testEstOrganise() {
         System.out.println("estOrganise");
-        HashChainee instance = null;
-        boolean expResult = false;
-        boolean result = instance.estOrganise();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        HashDico<String> monDico = new HashChainee<>(10);        
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        String tabString[] = new String[93];
+        assertTrue(monDico.estOrganise());
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + String.valueOf(c2);
+            //System.out.print(String.valueOf(c1) + " - ");
+            //           System.out.print(String.valueOf(c2) + " - ");
+            //           System.out.println(HashDico.getHashedIndex(String.valueOf(c1) + String.valueOf(c2), 512));
+            tabString[i] = s;
+            monDico.ajouter(s, s);
+            c1++;
+            c2--;
+        }
+        assertFalse(monDico.estOrganise());
     }
-
     /**
      * Test of organiser method, of class HashChainee.
      */
     @Test
     public void testOrganiser() {
         System.out.println("organiser");
-        HashChainee instance = null;
-        instance.organiser();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toSTring method, of class HashChainee.
-     */
-    @Test
-    public void testToSTring() {
-        System.out.println("toSTring");
-        HashChainee instance = null;
-        String expResult = "";
-        String result = instance.toSTring();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        HashDico<String> monDico = new HashChainee<>(10);          
+        
+        char c1 = 33;
+        char c2 = 126;
+        int fin;
+        fin = c2 - c1;
+        String s = "";
+        for (int i = 0; i < fin; i++) {
+            s = String.valueOf(c1) + " - " + String.valueOf(c2);
+            monDico.ajouter(String.valueOf(c1) + String.valueOf(c2), s);
+            c1++;
+            c2--;
+        }
+        int i = 0;
+        //while (!monDico.estOrganise()) {
+         //   i++;
+           // monDico.organiser();
+            
+        //}
+        System.out.println("nombre de bouble : " + i);
     }
 
 }
